@@ -1,0 +1,363 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Noise-Aware Voice Assistant | V2.0</title>
+
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+
+<div class="app-shell">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+
+        <div class="brand">
+            <div class="brand-icon">V</div>
+            <div>
+                <h2>VOICE AI</h2>
+                <span>ASSISTANT V2.0</span>
+            </div>
+        </div>
+
+        <div class="nav-label">WORKSPACE</div>
+
+        <nav class="navigation">
+            <a href="#overview" class="nav-link active">
+                <span>▦</span> Overview
+            </a>
+
+            <a href="#simulator" class="nav-link">
+                <span>◉</span> Voice Simulator
+            </a>
+
+            <a href="#analytics" class="nav-link">
+                <span>▥</span> Analytics
+            </a>
+
+            <a href="#history" class="nav-link">
+                <span>◷</span> Interaction History
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <span class="status-dot"></span>
+            Simulation Mode
+            <p>Version 2.0.0</p>
+        </div>
+
+    </aside>
+
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <!-- Top Bar -->
+        <header class="topbar">
+
+            <div>
+                <p class="eyebrow">WORKSPACE / DASHBOARD</p>
+                <h1>Voice Assistant Dashboard</h1>
+            </div>
+
+            <div class="system-status">
+                <span class="status-dot"></span>
+                System Online
+            </div>
+
+        </header>
+
+
+        <!-- Overview -->
+        <section id="overview" class="welcome-panel">
+
+            <div class="welcome-copy">
+                <span class="section-tag">SMART VOICE INTERACTION</span>
+
+                <h2>Welcome to your<br>Noise-Aware Assistant.</h2>
+
+                <p>
+                    Monitor simulated voice input, confidence levels
+                    and intelligent decision-making across different
+                    noise environments.
+                </p>
+
+                <a href="#simulator" class="primary-link">
+                    Start Simulation →
+                </a>
+            </div>
+
+            <div class="hero-visual" aria-hidden="true">
+                <div class="sound-wave">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <div class="wave-caption">VOICE SIGNAL</div>
+            </div>
+
+        </section>
+
+
+        <!-- Statistics -->
+        <section class="metrics-grid">
+
+            <article class="metric-card">
+                <span class="metric-label">Current Confidence</span>
+                <h2 id="metric-confidence">--</h2>
+                <p>Simulated confidence</p>
+            </article>
+
+            <article class="metric-card">
+                <span class="metric-label">Auto Threshold</span>
+                <h2 id="metric-threshold">80%</h2>
+                <p>Execution threshold</p>
+            </article>
+
+            <article class="metric-card">
+                <span class="metric-label">Executed Commands</span>
+                <h2 id="metric-executed">0</h2>
+                <p>Simulated executions</p>
+            </article>
+
+            <article class="metric-card">
+                <span class="metric-label">Retry Requests</span>
+                <h2 id="metric-retries">0</h2>
+                <p>Low-confidence events</p>
+            </article>
+
+        </section>
+
+
+        <!-- Voice Simulator -->
+        <section id="simulator" class="content-grid">
+
+            <!-- Input Settings -->
+            <article class="panel input-panel">
+
+                <div class="panel-heading">
+                    <div>
+                        <span class="section-tag">INPUT CONTROL</span>
+                        <h2>Voice Simulator</h2>
+                    </div>
+                    <span class="panel-icon">◉</span>
+                </div>
+
+                <label for="noise">Environment Noise</label>
+
+                <select id="noise">
+                    <option value="quiet">Quiet</option>
+                    <option value="medium">Medium</option>
+                    <option value="noisy">Noisy</option>
+                </select>
+
+                <label for="command">Simulated Voice Command</label>
+
+                <select id="command">
+                    <option value="Turn on the lights">
+                        Turn on the lights
+                    </option>
+                    <option value="Play music">
+                        Play music
+                    </option>
+                    <option value="Set an alarm">
+                        Set an alarm
+                    </option>
+                </select>
+
+                <button id="simulate" class="primary-button"
+                        type="button" disabled>
+                    Simulate Voice Input →
+                </button>
+
+                <div class="divider"></div>
+
+                <div class="threshold-heading">
+                    <div>
+                        <h3>Confidence Threshold</h3>
+                        <p>Adjust automatic execution level</p>
+                    </div>
+
+                    <strong id="threshold-value">80%</strong>
+                </div>
+
+                <input
+                    type="range"
+                    id="threshold-slider"
+                    min="50"
+                    max="95"
+                    step="5"
+                    value="80"
+                >
+
+                <div class="range-labels">
+                    <span>50%</span>
+                    <span>95%</span>
+                </div>
+
+            </article>
+
+
+            <!-- System Response -->
+            <article class="panel response-panel">
+
+                <div class="panel-heading">
+                    <div>
+                        <span class="section-tag">AI DECISION ENGINE</span>
+                        <h2>System Response</h2>
+                    </div>
+
+                    <span class="panel-icon">✧</span>
+                </div>
+
+                <div class="confidence-heading">
+                    <span>Recognition Confidence</span>
+                    <strong id="confidence">Not available</strong>
+                </div>
+
+                <div class="confidence-track">
+                    <div id="confidence-fill"
+                         class="confidence-fill">
+                    </div>
+                </div>
+
+                <div class="decision-box">
+
+                    <span class="decision-label">
+                        SYSTEM DECISION
+                    </span>
+
+                    <h3 id="decision-status">Waiting for input</h3>
+
+                    <p id="feedback" role="status" aria-live="polite">
+                        Choose your settings and simulate voice input.
+                    </p>
+
+                    <p id="decision-explanation">
+                        The system is ready to evaluate a simulated command.
+                    </p>
+
+                </div>
+
+                <div class="action-buttons">
+
+                    <button id="confirm" type="button" disabled>
+                        Confirm
+                    </button>
+
+                    <button id="cancel" type="button" disabled>
+                        Cancel
+                    </button>
+
+                    <button id="retry" type="button" disabled>
+                        Try Again
+                    </button>
+
+                    <button id="reset" type="button" disabled>
+                        Reset
+                    </button>
+
+                </div>
+
+                <p class="disclaimer">
+                    Confidence values are simulated, not measured
+                    recognition accuracy. No microphone is used.
+                </p>
+
+            </article>
+
+        </section>
+
+
+        <!-- Scenario Analytics -->
+        <section id="analytics" class="panel analytics-panel">
+
+            <div class="panel-heading">
+                <div>
+                    <span class="section-tag">PERFORMANCE MONITORING</span>
+                    <h2>Scenario Analytics</h2>
+                </div>
+            </div>
+
+            <p class="analytics-description">
+                Compare system activity across different
+                environmental noise conditions.
+            </p>
+
+            <div class="scenario-grid">
+
+                <article class="scenario-card">
+                    <span class="scenario-name">Quiet</span>
+                    <h3 id="quiet-count">0</h3>
+                    <p>Simulations</p>
+                    <div class="scenario-bar">
+                        <div id="quiet-bar"></div>
+                    </div>
+                </article>
+
+                <article class="scenario-card">
+                    <span class="scenario-name">Medium</span>
+                    <h3 id="medium-count">0</h3>
+                    <p>Simulations</p>
+                    <div class="scenario-bar">
+                        <div id="medium-bar"></div>
+                    </div>
+                </article>
+
+                <article class="scenario-card">
+                    <span class="scenario-name">Noisy</span>
+                    <h3 id="noisy-count">0</h3>
+                    <p>Simulations</p>
+                    <div class="scenario-bar">
+                        <div id="noisy-bar"></div>
+                    </div>
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- Interaction History -->
+        <section id="history" class="panel history-panel">
+
+            <div class="panel-heading">
+                <div>
+                    <span class="section-tag">ACTIVITY RECORDS</span>
+                    <h2>Interaction History</h2>
+                </div>
+            </div>
+
+            <p id="empty-log">
+                No recorded interactions yet.
+            </p>
+
+            <ul id="log"></ul>
+
+        </section>
+
+
+        <!-- Footer -->
+        <footer class="footer">
+            <span>NOISE-AWARE VOICE ASSISTANT</span>
+            <span>V2.0 · SIMULATION PROTOTYPE</span>
+        </footer>
+
+    </main>
+
+</div>
+
+</body>
+</html>
